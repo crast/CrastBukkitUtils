@@ -1,7 +1,7 @@
 package us.crast.quadtree;
 
 public interface QuadTreeStorage<T> {
-    public T makeSegment(QuadTreeNode<T> node);
+    public QuadTreeLeafNode<T> makeNode(QuadTreeInternalNode<T> parent);
 
     void close();
 
