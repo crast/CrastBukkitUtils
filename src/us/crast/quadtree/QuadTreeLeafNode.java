@@ -21,7 +21,7 @@ public abstract class QuadTreeLeafNode<T> extends QuadTreeNode<T> {
     }
     
     /**
-     * Leafs don't have children
+     * Leaves don't have children
      */
     @Override
     public QuadTreeNode<T> getChild(Coord vec) {
