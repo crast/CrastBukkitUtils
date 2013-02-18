@@ -4,7 +4,7 @@ import java.util.List;
 
 import us.crast.datastructures.ObjectMaker;
 
-final class ListBuilder<T> implements ObjectMaker<List<T>> {
+public final class ListBuilder<T> implements ObjectMaker<List<T>> {
 	@Override
 	public List<T> build(Object key) {
 		return new java.util.ArrayList<T>();
