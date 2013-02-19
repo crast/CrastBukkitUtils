@@ -20,20 +20,13 @@
     <url>https://github.com/Bukkit/CraftBukkit</url>
   </scm>
 
-  <!--
   <distributionManagement>
     <repository>
-      <id>repobo-rel</id>
-      <name>repo.bukkit.org Releases</name>
-      <url>http://repo.bukkit.org/content/repositories/releases/</url>
+      <id>archiva.internal</id>
+      <name>Internal Release Repository</name>
+      <url>http://localhost:5700/archiva/repository/internal/</url>
     </repository>
-    <snapshotRepository>
-      <id>repobo-snap</id>
-      <name>repo.bukkit.org Snapshots</name>
-      <url>http://repo.bukkit.org/content/repositories/snapshots/</url>
-    </snapshotRepository>
   </distributionManagement>
-  -->
 
   <repositories>
     <repository>
@@ -60,6 +53,13 @@
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
       <version>1.2.5-R5.0</version>
+      <type>jar</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>us.crast</groupId>
+      <artifactId>MondoCommand</artifactId>
+      <version>0.2-SNAPSHOT</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>

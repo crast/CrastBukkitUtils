@@ -1,7 +1,9 @@
 package us.crast.chatmagic;
 
+import mondocommand.MondoFailure;
 
-public final class MondoMessage extends Exception implements MessageWithStatus {
+
+public final class MondoMessage extends MondoFailure implements MessageWithStatus {
 	private static final long serialVersionUID = 8977396906672876450L;
 	private Status status;
 
