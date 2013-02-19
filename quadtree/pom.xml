@@ -11,6 +11,6 @@
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>BukkitStuff</artifactId>
+  <artifactId>QuadTree</artifactId>
   <version>0.1-SNAPSHOT</version>
 </project>

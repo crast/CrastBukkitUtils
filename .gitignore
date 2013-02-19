@@ -7,10 +7,11 @@
 
 # Java dirs
 bin/
+target/
 
 # Misc files
 *.swp
 .project
 .classpath
+.settings
 makejar.sh
-target/

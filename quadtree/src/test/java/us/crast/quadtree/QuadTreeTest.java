@@ -1,4 +1,4 @@
-package tests;
+package us.crast.quadtree;
 
 import java.util.Collection;
 import java.util.HashMap;
