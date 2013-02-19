@@ -1,5 +1,7 @@
 package us.crast.chatmagic;
 
+import mondocommand.ChatMagic;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
