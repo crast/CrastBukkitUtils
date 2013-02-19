@@ -1,4 +1,4 @@
-package us.crast.utils;
+package us.crast.bukkitstuff;
 
 import java.security.SecureRandom;
 

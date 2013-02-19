@@ -41,7 +41,7 @@ public class BasicMessage implements MessageWithStatus {
 	}
 	
 	public static String render(Status status, String format, Object... args) {
-		return render(status, String.format(format, args), true);
+		return render(status, ChatMagic.colorize(format, args), true);
 	}
 	
 	public static String render(Status status, String message, boolean prefix) {
