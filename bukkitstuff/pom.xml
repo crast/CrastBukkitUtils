@@ -11,6 +11,5 @@
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>CrastBukkitUtils</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <artifactId>BukkitStuff</artifactId>
 </project>
