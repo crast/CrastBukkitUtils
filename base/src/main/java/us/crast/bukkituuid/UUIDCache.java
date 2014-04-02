@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.commons.lang.Validate;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -31,6 +32,7 @@ public class UUIDCache implements Listener {
     private JavaPlugin plugin;
 
     public UUIDCache(JavaPlugin plugin) {
+        Validate.notNull(plugin);
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -43,6 +45,7 @@ public class UUIDCache implements Listener {
      * will then be able to return this id.
      */
     public UUID getIdOptimistic(String name) {
+        Validate.notEmpty(name);
         UUID uuid = cache.get(name);
         if (uuid == null) {
             ensurePlayerUUID(name);
@@ -62,14 +65,11 @@ public class UUIDCache implements Listener {
      * @return a UUID
      */
     public UUID getId(String name) {
+        Validate.notEmpty(name);
         UUID uuid = cache.get(name);
         if (uuid == null) {
-            try {
-                Map<String, UUID> m = new UUIDFetcher(nameList(name)).call();
-                return m.get(name);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            syncFetch(nameList(name));
+            return cache.get(name);
         } else if (uuid.equals(ZERO_UUID)) {
             uuid = null;
         }
@@ -87,7 +87,7 @@ public class UUIDCache implements Listener {
     }
     
     /**
-     * 
+     * Asynchronously fetch the name if it's not in our internal map.
      * @param name The player's name
      */
     public void ensurePlayerUUID(String name) {
@@ -96,17 +96,21 @@ public class UUIDCache implements Listener {
         asyncFetch(nameList(name));
     }
 
-    private void asyncFetch(ArrayList<String> names) {
-        final UUIDFetcher fetcher = new UUIDFetcher(names);
+    private void asyncFetch(final ArrayList<String> names) {
         plugin.getServer().getScheduler().scheduleAsyncDelayedTask(plugin, new Runnable() {
             public void run() {
-                try {
-                    cache.putAll(fetcher.call());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                syncFetch(names);
             }
         });
+    }
+    
+    private void syncFetch(ArrayList<String> names) {
+        final UUIDFetcher fetcher = new UUIDFetcher(names);
+        try {
+            cache.putAll(fetcher.call());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     private ArrayList<String> nameList(String name) {
